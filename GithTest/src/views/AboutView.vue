@@ -1,42 +1,19 @@
+<script setup>
+
+
+</script>
+
+
 <template>
-  <div class="about-container">
-    <header class="about-header">
-      <h1>À propos de l'application</h1>
-      <p class="subtitle">Système de gestion des accès et des employés</p>
-    </header>
 
-    <section class="about-content">
-      <div class="card">
-        <h3>🚀 Concept</h3>
-        <p>
-          Cette plateforme permet de gérer une liste d'employés récupérée dynamiquement via l'API 
-          <a href="https://dummyjson.com" target="_blank">DummyJSON</a>.
-        </p>
-      </div>
+<h1>about</h1>
 
-      <div class="card">
-        <h3>🔐 Sécurité & Rôles</h3>
-        <p>
-          L'accès est segmenté : seuls les profils <strong>Admin</strong> et <strong>Moderator</strong> 
-          peuvent accéder au Dashboard pour voir et supprimer des utilisateurs.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🛠️ Technologies</h3>
-        <ul>
-          <li>Vue.js 3 (Composition API)</li>
-          <li>Vue Router (Navigation Guards)</li>
-          <li>Fetch API & LocalStorage</li>
-        </ul>
-      </div>
-    </section>
-
-    <router-link to="/" class="back-btn">Retour à l'accueil</router-link>
-  </div>
 </template>
 
+
 <style scoped>
+
+
 .about-container {
   max-width: 900px;
   margin: 40px auto;
@@ -105,6 +82,7 @@
 
 a {
   color: red;
+  font-family: serif;
   /* color: #42b983; */
   text-decoration: none;
   font-weight: bold;
