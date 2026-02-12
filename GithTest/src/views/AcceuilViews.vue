@@ -1,104 +1,151 @@
 <script setup>
-import { ref } from 'vue'
 
-const features = ref([
-  { id: 1, title: "Rapide", desc: "Application optimisée et performante." },
-  { id: 2, title: "Moderne", desc: "Design propre et responsive." },
-  { id: 3, title: "Sécurisée", desc: "Structure prête pour l'authentification." }
-])
 </script>
 
 <template>
-  <div class="home">
-    <!-- Hero Section -->
-    <section class="hero">
-      <h1>Bienvenue sur ton projet Vue</h1>
-      <p>Construis quelque chose de puissant et élégant.</p>
-      <button class="cta">Commencer</button>
+  <div class="welcome-container">
+    <header class="hero-section">
+      <h1 v-if="$route.query.name" class="fade-in">
+        <span>Bienvenue,</span> {{ $route.query.name }}
+      </h1>
+      <h1 v-else class="fade-in">Welcome visitor</h1>
+
+      <div class="separator"></div>
+
+      <h2>Découvrez l'univers de nos catalogues</h2>
+      <p class="subtitle">L'élégance et le style à portée de main.</p>
+    </header>
+
+    <section class="catalog-preview">
+      <div class="card-skeleton">Catalogue Collection</div>
+      <div class="card-skeleton">Nouveautés</div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features">
-      <div 
-        v-for="feature in features" 
-        :key="feature.id" 
-        class="card"
-      >
-        <h3>{{ feature.title }}</h3>
-        <p>{{ feature.desc }}</p>
-      </div>
-    </section>
+    <div class="action-area">
+      <router-link to="/" class="logout-btn" @click="$router.back()">Déconnexion</router-link>
+    </div>
+
   </div>
 </template>
 
 <style scoped>
-.home {
-  font-family: 'Segoe UI', sans-serif;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+/* Conteneur principal avec un flou léger pour faire ressortir le texte sur l'image de fond */
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
   color: white;
+  text-align: center;
   padding: 40px 20px;
 }
 
-/* Hero */
-.hero {
-  text-align: center;
-  margin-bottom: 60px;
+.hero-section {
+  max-width: 800px;
+  margin-bottom: 50px;
 }
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
-}
-
-.hero p {
-  font-size: 1.2rem;
-  opacity: 0.8;
-  margin-bottom: 25px;
-}
-
-.cta {
-  padding: 12px 28px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  background: #ff6b35;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.cta:hover {
-  background: #ff8c5a;
-  transform: translateY(-3px);
-}
-
-/* Features */
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.08);
-  padding: 25px;
-  border-radius: 12px;
-  backdrop-filter: blur(8px);
-  transition: 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.card h3 {
+h1 {
+  font-size: clamp(40px, 8vw, 80px);
+  /* Adaptatif selon l'écran */
+  font-family: 'Playfair Display', serif;
+  /* Un style luxueux si dispo */
   margin-bottom: 10px;
-  color: #ff6b35;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.card p {
-  opacity: 0.85;
+h1 span {
+  font-weight: 300;
+  display: block;
+  font-size: 0.5em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+.separator {
+  width: 60px;
+  height: 3px;
+  background: #66bb6a;
+  /* Rappel de ta navbar */
+  margin: 20px auto;
+}
+
+h2 {
+  font-size: clamp(24px, 5vw, 40px);
+  font-weight: 300;
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.subtitle {
+  font-style: italic;
+  opacity: 0.7;
+  font-size: 1.1rem;
+}
+
+/* Grille de catalogues factice pour le look */
+.catalog-preview {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.card-skeleton {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px 40px;
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.card-skeleton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: white;
+}
+
+/* Style du bouton Deconnexion */
+.logout-btn {
+  display: inline-block;
+  min-width: 200px;
+  padding: 15px 30px;
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  border-radius: 0;
+  /* Look luxe : angles droits */
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: white;
+  color: #1a1a1a;
+}
+
+/* Animation d'entrée */
+.fade-in {
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
