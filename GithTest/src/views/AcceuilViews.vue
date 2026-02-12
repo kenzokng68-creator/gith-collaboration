@@ -7,7 +7,7 @@
 <template>
 
 <h1>acceuil</h1>
-
+<p>hello word fffff</p>
 </template>
 
 
